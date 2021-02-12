@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">Gauges Charts</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Charts</a></li>
+            <li class="breadcrumb-item active">Gauges</li>
+        </ol>
+        <div class="page-header-actions">
+            <a class="btn btn-sm btn-primary btn-round" href="http://bernii.github.io/gauge.js/"
+               target="_blank">
+                <i class="icon md-link" aria-hidden="true"></i>
+                <span class="hidden-sm-down">Official Website</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="page-content container-fluid">
+        <!-- Panel Gauge -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Gauge</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row row-lg">
+                    <div class="col-md-6">
+
+                        <!-- Example Gauge Basic -->
+                        <div class="example-wrap">
+                            <div class="example">
+
+                                <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="5000">
+                                    <canvas width="200" height="150"></canvas>
+                                    <p class="text-uppercase">46%<br/>Memory Utilization(SNMP)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Example Gauge Basic -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- Example Gauge Dynamic -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="4000">
+                                    <canvas width="200" height="150"></canvas>
+                                    <p class="text-uppercase">53%<br />Disk Utilization(SNMP)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Example Gauge Dynamic -->
+                    </div>
+                </div>
+
+
+                <!-- Example Gauge Sizing -->
+                <div class="example-wrap">
+                   
+
+                    <div class="row row-lg">
+                        <div class="col-md-4">
+                            <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="30000">
+                                <canvas width="200" height="150"></canvas>
+                                <p class="text-uppercase">5%<br />CPU Utilization(SNMP)</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="20000">
+                                <canvas width="200" height="150"></canvas>
+                                <p class="text-uppercase">11%<br />CPU Utilization(ViWeb)</p>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                </div>
+                <!-- End Example Gauge Sizing -->
+            </div>
+        </div>
+        <!-- End Panel Gauge -->
+        </div>
+    </div>
