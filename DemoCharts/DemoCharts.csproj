@@ -152,6 +152,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="global\breakpoints\breakpoints.es.js" />
+    <Content Include="global\breakpoints\breakpoints.js" />
+    <Content Include="global\breakpoints\breakpoints.min.js" />
     <Content Include="global\css\bootstrap-extend.css" />
     <Content Include="global\css\bootstrap-extend.min.css" />
     <Content Include="global\css\bootstrap.css" />
@@ -341,6 +344,7 @@
     <Content Include="global\vendor\bootstrap\bootstrap.bundle.min.js.map" />
     <Content Include="global\vendor\bootstrap\bootstrap.js.map" />
     <Content Include="global\vendor\bootstrap\bootstrap.min.js.map" />
+    <Content Include="global\breakpoints\breakpoints.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
