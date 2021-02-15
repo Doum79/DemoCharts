@@ -1,16 +1,18 @@
-﻿@{
+﻿@model DemoCharts.Models.Capacite
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="page">
     <div class="page-header">
-       
+
     </div>
 
     <div class="page-content container-fluid">
         <!-- Panel Gauge -->
         <div class="panel">
-            
+
             <div class="panel-body">
                 <div class="row row-lg">
                     <div class="col-md-6">
@@ -19,9 +21,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="5000">
+                                <div class="gauge" id="disk" data-plugin="gauge" data-value="@Model.Disk" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase">46%<br/>Memory Utilization(SNMP)</p>
+                                    <p class="text-uppercase"><strong>@Model.Disk<br/>Disk Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -32,9 +34,9 @@
                         <!-- Example Gauge Dynamic -->
                         <div class="example-wrap">
                             <div class="example">
-                                <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="4000">
+                                <div class="gauge" id="cpu" data-plugin="gauge" data-value="@Model.CPU" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase">53%<br />Disk Utilization(SNMP)</p>
+                                    <p class="text-uppercase"><strong>@Model.CPU<br/>CPU Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -42,32 +44,30 @@
                     </div>
                 </div>
 
-
-                <!-- Example Gauge Sizing -->
-                <div class="example-wrap">
-                   
-
-                    <div class="row row-lg">
-                        <div class="col-md-4">
-                            <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="30000">
+           
+                <div class="col-md-6">
+                    <!-- Example Gauge Sizing -->
+                    <div class="example-wrap">
+                        <div class="example">
+                            <div class="gauge" id="memory" data-plugin="gauge" data-value="@Model.Memory" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase">5%<br />CPU Utilization(SNMP)</p>
+                                <p class="text-uppercase"><strong>@Model.Memory<br/>Memory Utilization (SNMP)</strong></p>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="gauge" data-plugin="gauge" data-value="2190" data-max-value="20000">
-                                <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase">11%<br />CPU Utilization(ViWeb)</p>
-                            </div>
-                        </div>
+                        @*<div class="col-md-4">
+                    <div class="gauge" data-plugin="gauge" data-value="@Model." data-max-value="@Model.">
+                        <canvas width="200" height="150"></canvas>
+                        <p class="text-uppercase">11%<br />CPU Utilization(ViWeb)</p>
+                    </div>
+                </div>*@
 
-                       
+
                     </div>
                 </div>
                 <!-- End Example Gauge Sizing -->
             </div>
         </div>
         <!-- End Panel Gauge -->
-        </div>
     </div>
+</div>
