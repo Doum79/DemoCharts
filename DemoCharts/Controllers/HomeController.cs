@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,92 +14,68 @@ namespace DemoCharts.Controllers
 {
     public class HomeController : Controller
     {
-        //public static float SystemCPU { get; private set; }
-         private static readonly object locker = new object();
-       
-        //private static readonly PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true) ;
-        //private static readonly PerformanceCounter meCounter = new PerformanceCounter("Memory", "% Committed Bytes in use");
-        // private static readonly PerformanceCounter diskCounter = new PerformanceCounter("LogicalDisk", "% Free Space", "_Total", true);
-        public  ActionResult  Index(Capacite c)
-        {
-            //c.CPU = 0;
-            //c.Memory = 0;
-            //c.Disk = 0;
-             //Task.Run(() =>
-             //     {
-             //         var meCounter = new PerformanceCounter("Memory", "% Committed Bytes in use");
-             //         var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-             //         var diskCounter = new PerformanceCounter("LogicalDisk", "% Free Space", "_Total", true);
-             //         while (true)
-             //         {
-
-             //             lock (locker)
-             //             {
-             //                 if (Math.Abs(c.CPU) <= 0.00)
-             //                     c.CPU = cpuCounter.NextValue();
-             //           //c.Memory = meCounter.NextValue();
-             //           //c.Disk= diskCounter.NextValue();
-             //       }
-             //             Thread.Sleep(1000);
-             //         }
-             //     });
-        
+     
+          public  ActionResult  Index(Capacite c)
+           {
+           
 
 
-        c.CPU = GetCpuValue();
-        c.Memory = GetMemValue();
-        //    c.Disk = GetDiskValue();
+        c.CPU = GetCPUusage().ToString();
+            c.Memory = GetMem().ToString();
+            //    c.Disk = GetDiskValue();
 
-            
+
 
             return View(c) ;
         }
 
-        private static float GetCpuValue()
+
+
+
+        //private static string GetDiskValue()
+        //{
+        //// Win32Win32_ProcessorWin32_LogicalDisk
+        //ManagementScope oMs = new ManagementScope();
+        //SelectQuery queryCpuUsage = new SelectQuery("SELECT * FROM  Win32Win32_ProcessorWin32_LogicalDisk");
+
+    //}
+
+    public static string GetCPUusage()
+    {
+           
+                long cpuClockSpeed = 0;
+                ManagementClass mgmt = new ManagementClass("Win32_PerfFormattedData_PerfOS_Processor");
+                //create a ManagementObjectCollection to loop through
+                ManagementObjectCollection objCol = mgmt.GetInstances();
+                //start our loop for all processors found
+                foreach (ManagementObject obj in objCol)
+                {
+                    if (cpuClockSpeed == 0)
+                    {
+                        // only return cpuStatus from first CPU
+                        cpuClockSpeed = 100 - Convert.ToInt64(obj.Properties["PercentUserTime"].Value.ToString());
+                    }
+                }
+                //return the status
+                return cpuClockSpeed + "%";
+            }
+        
+
+    public static string GetMem()
         {
 
-            var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-            var value = cpuCounter.NextValue();
-            //Note: In most cases you need to call .NextValue() twice to be able to get the real value
-            if (Math.Abs(value) <= 0.00)
-                value = cpuCounter.NextValue();
-            //    //PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-            //    // float value = cpuCounter.NextValue();
-            //    // //Note: In most cases you need to call .NextValue() twice to be able to get the real value
-            //    // var val = string.Format("{0:0}%",value);
-            //    //Thread.Sleep(1000);
-
-                return value;
-            }
-
-
-           private static float  GetMemValue()
-            {
-
-            var meCounter = new PerformanceCounter("Memory", "% Committed Bytes in use");
-            var value = meCounter.NextValue();
-            //    //float value = meCounter.NextValue();
-            if (Math.Abs(value) <= 0.00)
-                value = meCounter.NextValue();
-            //    ////Note: In most cases you need to call .NextValue() twice to be able to get the real value
-            //    //var val = string.Format("{0:0}%", value);
-                return value;
-            }
-
-
-            private static string GetDiskValue()
+        int MemSlots = 0;
+        ManagementScope oMs = new ManagementScope();
+        ObjectQuery oQuery2 = new ObjectQuery("SELECT MemoryDevices FROM Win32_PhysicalMemoryArray");
+        ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
+        ManagementObjectCollection oCollection2 = oSearcher2.Get();
+        foreach (ManagementObject obj in oCollection2)
         {
-            PerformanceCounter diskCounter = new PerformanceCounter("LogicalDisk", "% Free Space", "_Total", true);
-            float value = diskCounter.NextValue();
-             //Note: In most cases you need to call .NextValue() twice to be able to get the real value
-           var val = string.Format("{0:0}%",value);
-            Thread.Sleep(1000);
-            return val;
+            MemSlots = 100 - Convert.ToInt32(obj["MemoryDevices"]);
         }
+        return MemSlots.ToString() + "%";
 
-
-
-
+    }
 
 
         public ActionResult About()

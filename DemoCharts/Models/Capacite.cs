@@ -7,8 +7,8 @@ namespace DemoCharts.Models
 {
     public class Capacite
     {
-        public float CPU { get; set; } 
-        public float Memory { get; set; }
+        public string CPU { get; set; } 
+        public string Memory { get; set; }
         public float Disk { get; set; }
     }
 }
