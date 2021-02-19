@@ -9,6 +9,6 @@ namespace DemoCharts.Models
     {
         public string CPU { get; set; } 
         public string Memory { get; set; }
-        public float Disk { get; set; }
+        public string Disk { get; set; }
     }
 }

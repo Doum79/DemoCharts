@@ -1,7 +1,9 @@
 ﻿using DemoCharts.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Threading;
@@ -14,20 +16,21 @@ namespace DemoCharts.Controllers
 {
     public class HomeController : Controller
     {
-     
-          public  ActionResult  Index(Capacite c)
-           {
-           
+
+        public ActionResult Index(Capacite c)
+        {
 
 
-        c.CPU = GetCPUusage().ToString();
+
+            c.CPU = GetCPUusage().ToString();
             c.Memory = GetMem().ToString();
-            //    c.Disk = GetDiskValue();
+            c.Disk = GetDisk().ToString();
 
 
 
-            return View(c) ;
+            return View(c);
         }
+
 
 
 
@@ -38,12 +41,11 @@ namespace DemoCharts.Controllers
         //ManagementScope oMs = new ManagementScope();
         //SelectQuery queryCpuUsage = new SelectQuery("SELECT * FROM  Win32Win32_ProcessorWin32_LogicalDisk");
 
-    //}
+        //}
 
-    public static string GetCPUusage()
-    {
-           
-                long cpuClockSpeed = 0;
+        public static string GetCPUusage()
+        {
+             long cpuClockSpeed = 0;
                 ManagementClass mgmt = new ManagementClass("Win32_PerfFormattedData_PerfOS_Processor");
                 //create a ManagementObjectCollection to loop through
                 ManagementObjectCollection objCol = mgmt.GetInstances();
@@ -53,30 +55,57 @@ namespace DemoCharts.Controllers
                     if (cpuClockSpeed == 0)
                     {
                         // only return cpuStatus from first CPU
-                        cpuClockSpeed = 100 - Convert.ToInt64(obj.Properties["PercentUserTime"].Value.ToString());
+                        cpuClockSpeed = Convert.ToInt64(obj.Properties["PercentUserTime"].Value.ToString());
                     }
                 }
                 //return the status
                 return cpuClockSpeed + "%";
-            }
-        
-
-    public static string GetMem()
-        {
-
-        int MemSlots = 0;
-        ManagementScope oMs = new ManagementScope();
-        ObjectQuery oQuery2 = new ObjectQuery("SELECT MemoryDevices FROM Win32_PhysicalMemoryArray");
-        ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
-        ManagementObjectCollection oCollection2 = oSearcher2.Get();
-        foreach (ManagementObject obj in oCollection2)
-        {
-            MemSlots = 100 - Convert.ToInt32(obj["MemoryDevices"]);
         }
-        return MemSlots.ToString() + "%";
 
-    }
 
+        public static string GetMem()
+        {
+
+            ManagementClass mgmt = new ManagementClass("Win32_PerfRawData_PerfOS_Memory");
+            //create a ManagementObjectCollection to loop through
+            ManagementObjectCollection objCol = mgmt.GetInstances();
+            int MemSlots = 0;
+            foreach (ManagementObject obj in objCol)
+            {
+                if (MemSlots == 0)
+                {
+                    MemSlots = 100 - Convert.ToInt32(obj["WorkingSetPrivate"]);
+
+                }
+            }
+
+            return MemSlots.ToString() + "%";
+
+        }
+
+
+
+
+        public static string GetDisk()
+        {
+
+
+
+           
+            ManagementScope oMs = new ManagementScope();
+            ObjectQuery oQuery2 = new ObjectQuery("SELECT MemoryDevices FROM Win32_PhysicalMemoryArray");
+            ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
+            ManagementObjectCollection oCollection2 = oSearcher2.Get();
+            int MemSlots = 0;
+            foreach (ManagementObject obj in oCollection2)
+            {
+                MemSlots = Convert.ToInt32(obj["MemoryDevices"]);
+            }
+
+            return MemSlots.ToString() + "%";
+
+        }
+    
 
         public ActionResult About()
         {
