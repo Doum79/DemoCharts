@@ -23,7 +23,7 @@ namespace DemoCharts.Controllers
 
 
             c.CPU = GetCPUusage().ToString();
-            c.Memory = GetMem().ToString();
+           // c.Memory = GetMem().ToString();
             c.Disk = GetDisk().ToString();
 
 
@@ -63,25 +63,25 @@ namespace DemoCharts.Controllers
         }
 
 
-        public static string GetMem()
-        {
+        //public static string GetMem()
+        //{
 
-            ManagementClass mgmt = new ManagementClass("Win32_PerfRawData_PerfOS_Memory");
-            //create a ManagementObjectCollection to loop through
-            ManagementObjectCollection objCol = mgmt.GetInstances();
-            int MemSlots = 0;
-            foreach (ManagementObject obj in objCol)
-            {
-                if (MemSlots == 0)
-                {
-                    MemSlots = 100 - Convert.ToInt32(obj["WorkingSetPrivate"]);
+        //    ManagementClass mgmt = new ManagementClass("Win32_PerfRawData_PerfOS_Memory");
+        //    //create a ManagementObjectCollection to loop through
+        //    ManagementObjectCollection objCol = mgmt.GetInstances();
+        //    int MemSlots = 0;
+        //    foreach (ManagementObject obj in objCol)
+        //    {
+        //        if (MemSlots == 0)
+        //        {
+        //            MemSlots = 100 - Convert.ToInt32(obj["WorkingSetPrivate"]);
 
-                }
-            }
+        //        }
+        //    }
 
-            return MemSlots.ToString() + "%";
+        //    return MemSlots.ToString() + "%";
 
-        }
+        //}
 
 
 
