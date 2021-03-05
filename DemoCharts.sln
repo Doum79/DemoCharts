@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCharts", "DemoCharts\DemoCharts.csproj", "{64A8081D-2328-4550-89AD-D269E9C63601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceService", "PerformanceService\PerformanceService.csproj", "{77271D9A-798A-4E55-8E8F-234658A2F631}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfDisplay", "PerfDisplay\PerfDisplay.csproj", "{F09CA5E9-67A6-4003-B194-24B8816245A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{64A8081D-2328-4550-89AD-D269E9C63601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A8081D-2328-4550-89AD-D269E9C63601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A8081D-2328-4550-89AD-D269E9C63601}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77271D9A-798A-4E55-8E8F-234658A2F631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77271D9A-798A-4E55-8E8F-234658A2F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77271D9A-798A-4E55-8E8F-234658A2F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77271D9A-798A-4E55-8E8F-234658A2F631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09CA5E9-67A6-4003-B194-24B8816245A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09CA5E9-67A6-4003-B194-24B8816245A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09CA5E9-67A6-4003-B194-24B8816245A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09CA5E9-67A6-4003-B194-24B8816245A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
