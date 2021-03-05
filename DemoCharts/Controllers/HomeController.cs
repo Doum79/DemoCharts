@@ -9,28 +9,25 @@ using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-
+using System.Web.Http;
 using System.Web.Mvc;
+
 
 namespace DemoCharts.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApiController
     {
 
-        public ActionResult Index(Capacite c)
+        public IEnumerable<string> Index()
         {
 
-
-
-            c.CPU = GetCPUusage().ToString();
-           // c.Memory = GetMem().ToString();
-            c.Disk = GetDisk().ToString();
-
-
-
-            return View(c);
+            return new string[] { "Index", "Home" };
         }
 
+        public string Get(int id)
+        {
+            return "value";
+        }
 
 
 
@@ -66,15 +63,19 @@ namespace DemoCharts.Controllers
         //public static string GetMem()
         //{
 
-        //    ManagementClass mgmt = new ManagementClass("Win32_PerfRawData_PerfOS_Memory");
-        //    //create a ManagementObjectCollection to loop through
-        //    ManagementObjectCollection objCol = mgmt.GetInstances();
+        //    //ManagementClass mgmt = new ManagementClass("SELECT Capacity from Win32_PhysicalMemory");
+        //    ////create a ManagementObjectCollection to loop through
+        //    //ManagementObjectCollection objCol = mgmt.GetInstances();
+        //    ManagementScope oMs = new ManagementScope();
+        //    ObjectQuery oQuery2 = new ObjectQuery("SELECT Capacity FROM Win32_PhysicalMemory");
+        //    ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
+        //    ManagementObjectCollection oCollection2 = oSearcher2.Get();
         //    int MemSlots = 0;
-        //    foreach (ManagementObject obj in objCol)
+        //    foreach (ManagementObject obj in oCollection2)
         //    {
         //        if (MemSlots == 0)
         //        {
-        //            MemSlots = 100 - Convert.ToInt32(obj["WorkingSetPrivate"]);
+        //            MemSlots = 100 - Convert.ToInt32(obj["Capacity"]);
 
         //        }
         //    }
@@ -86,40 +87,30 @@ namespace DemoCharts.Controllers
 
 
 
-        public static string GetDisk()
-        {
+        //public static string GetDisk()
+        //{
 
 
 
            
-            ManagementScope oMs = new ManagementScope();
-            ObjectQuery oQuery2 = new ObjectQuery("SELECT MemoryDevices FROM Win32_PhysicalMemoryArray");
-            ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
-            ManagementObjectCollection oCollection2 = oSearcher2.Get();
-            int MemSlots = 0;
-            foreach (ManagementObject obj in oCollection2)
-            {
-                MemSlots = Convert.ToInt32(obj["MemoryDevices"]);
-            }
+        //    ManagementScope oMs = new ManagementScope();
+        //    ObjectQuery oQuery2 = new ObjectQuery("SELECT MemoryDevices FROM Win32_PhysicalMemory");
+        //    ManagementObjectSearcher oSearcher2 = new ManagementObjectSearcher(oMs, oQuery2);
+        //    ManagementObjectCollection oCollection2 = oSearcher2.Get();
+        //    int MemSlots = 0;
+        //    foreach (ManagementObject obj in oCollection2)
+        //    {
+        //        MemSlots = 100 - Convert.ToInt32(obj["MemoryDevices"]);
+        //    }
 
-            return MemSlots.ToString() + "%";
 
-        }
+
+        //    return MemSlots.ToString() + "%";
+
+        //}
     
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+ 
+        
 
     }
 }
