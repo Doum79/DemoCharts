@@ -1,5 +1,6 @@
 ﻿using DemoCharts.Models;
 using Microsoft.Ajax.Utilities;
+using PerfDisplay.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,21 +14,43 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 
+
 namespace DemoCharts.Controllers
 {
-    public class HomeController : ApiController
+    public class HomeController : Controller
     {
+        private static readonly CPUController _perf = new CPUController();
 
-        public IEnumerable<string> Index()
+        public ActionResult Index()
         {
-
-            return new string[] { "Index", "Home" };
+         
+            return View();
         }
 
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
+        ////[Route("Account/MtnMoneyPayment/{amount}")]
+        //public async Task<JsonResult> CPUMonitor(string cpu)
+        //{
+        //    try
+        //    {
+        //        var Cap = new Capacite();
+        //        Cap. CPU = cpu;
+
+        //        _perf.GetCpu();
+
+
+
+        //        return Json(new { success = true, message = "successful" }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+
+        //        //  throw;
+        //    }
+
+        //}
+
 
 
 

@@ -35,9 +35,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="cpu" data-plugin="gauge" data-value="@Model.CPU" data-max-value="900">
+                                <div class="gauge" id="cpu" data-plugin="gauge" data-value="" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase"><strong>@Model.CPU<br/>CPU Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase"><strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -50,9 +50,9 @@
                     <!-- Example Gauge Sizing -->
                     <div class="example-wrap">
                         <div class="example">
-                            <div class="gauge" id="memory" data-plugin="gauge" data-value="@Model.Memory" data-max-value="900">
+                            <div class="gauge" id="memory" data-plugin="gauge" data-value="" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase"><strong>@Model.Memory<br/>Memory Utilization (SNMP)</strong></p>
+                                <p class="text-uppercase"><strong><br/>Memory Utilization (SNMP)</strong></p>
                             </div>
                         </div>
 
@@ -72,3 +72,30 @@
         <!-- End Panel Gauge -->
     </div>
 </div>
+
+
+<script>
+
+    let result = 0;
+   function cup () {
+        alert('ajax');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "http://localhost:8081/cpu/id",
+            success: function (data) {
+                alert(data);
+            }
+        });
+    }
+
+
+    function Timer() {
+        var dt = new Date()
+        document.getElementById("horloge").innerHTML = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        setTimeout("Timer()", 900);
+        console.log("Exécution de Timer()");
+    }
+    Timer();
+   
+</script>
