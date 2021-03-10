@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Results;
 
 namespace PerfDisplay.Controllers
 {
+  
     [RoutePrefix("mem")]
+    [EnableCorsAttribute("https://localhost:44345", "*", "*")]
     public class MemoryController : ApiController
     {
         [Route("{id}")]

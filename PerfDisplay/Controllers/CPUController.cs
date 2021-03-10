@@ -7,11 +7,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Results;
 
 namespace PerfDisplay.Controllers
 {
+  
     [RoutePrefix("cpu")]
+    [EnableCorsAttribute("https://localhost:44345", "*", "*")]
     public class CPUController : ApiController
     {
         [Route("{id}")]

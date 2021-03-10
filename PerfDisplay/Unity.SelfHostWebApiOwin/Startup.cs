@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using Microsoft.Practices.Unity;
 using System.Web.Http.Filters;
+using System.Web.Http.Cors;
 
 [assembly: OwinStartup(typeof(Unity.SelfHostWebApiOwin.Startup))]
 
@@ -36,6 +37,8 @@ namespace Unity.SelfHostWebApiOwin
 
 			// Add Unity filters provider
             RegisterFilterProviders(config);
+            //EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors();
 
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",

@@ -23,7 +23,7 @@
 
                                 <div class="gauge" id="disk" data-plugin="gauge" data-value="" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase"><strong><br/>Disk Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase"><strong><br />Disk Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -35,9 +35,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="getCPUValue" data-plugin="gauge" data-value="" data-max-value="900">
-                                    <canvas width="200" height="150" ></canvas>
-                                    <p class="text-uppercase" ><strong><br />CPU Utilization (SNMP)</strong></p>
+                                <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="" data-max-value="900">
+                                    <canvas width="200" height="150"></canvas>
+                                    <p class="text-uppercase"><strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -45,23 +45,23 @@
                     </div>
                 </div>
 
-           
+
                 <div class="col-md-6">
                     <!-- Example Gauge Sizing -->
                     <div class="example-wrap">
                         <div class="example">
                             <div class="gauge" id="memory" data-plugin="gauge" data-value="" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase" ><strong><br/>Memory Utilization (SNMP)</strong></p>
+                                <p class="text-uppercase">(result)<strong><br />Memory Utilization (SNMP)</strong></p>
                             </div>
                         </div>
 
                         @*<div class="col-md-4">
-                    <div class="gauge" data-plugin="gauge" data-value="@Model." data-max-value="@Model.">
-                        <canvas width="200" height="150"></canvas>
-                        <p class="text-uppercase">11%<br />CPU Utilization(ViWeb)</p>
-                    </div>
-                </div>*@
+                                <div class="gauge" data-plugin="gauge" data-value="@Model." data-max-value="@Model.">
+                                    <canvas width="200" height="150"></canvas>
+                                    <p class="text-uppercase">11%<br />CPU Utilization(ViWeb)</p>
+                                </div>
+                            </div>*@
 
 
                     </div>
@@ -74,22 +74,31 @@
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script>
+
+
+
+
     let result = 0;
     function getCPUValue() {
         $.ajax({
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8081/cpu/id' },
             url: "http://localhost:8081/cpu/id",
             type: "GET",
-            success: function (result) {
-                cpuResult = result.value;
-                console.log(cpuResult);
+            success: function (val) {
+                result = val.value;
+                console.log(result);
+               /* document.getElementById('getCPUValue').setAttribute('data-value', result);*/ // change la valeur de data-value automatiquement
             },
             error: function (err) {
-                alert(err);
+                console.log(err);
             }
         });
         setTimeout(getCPUValue, 5000);
     }
+
 
     getCPUValue();
 
@@ -102,7 +111,7 @@
                 memResult = result.value;
             },
             error: function (err) {
-                alert(err);
+                console.log(err);
             }
         });
         setTimeout(getMemValue, 5000);
@@ -119,12 +128,12 @@
                 diskResult = result.value;
             },
             error: function (err) {
-                alert(err);
+                console.log(err);
             }
         });
         setTimeout(getSpaceValue, 5000);
     }
 
     getSpaceValue();
-   
+
 </script>
