@@ -35,7 +35,7 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="getCPUValue" data-plugin="gauge" data-value="" data-max-value="900">
+                                <div class="gauge" id="getCPUValue" data-plugin="gauge" data-value="" data-max-value="100">
                                     <canvas width="200" height="150" ></canvas>
                                     <p class="text-uppercase" ><strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
@@ -72,17 +72,19 @@
         <!-- End Panel Gauge -->
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script>
     let result = 0;
     function getCPUValue() {
         $.ajax({
+            crossOrigin: true,
             url: "http://localhost:8081/cpu/id",
             type: "GET",
-            success: function (result) {
-                cpuResult = result.value;
-                console.log(cpuResult);
+            success: function (val) {
+                result = val.value;
+                console.log(result);
+                document.getElementById('getCPUValue').setAttribute('data-value', result); // change la valeur de data-value automatiquement
             },
             error: function (err) {
                 alert(err);
@@ -92,7 +94,6 @@
     }
 
     getCPUValue();
-
 
     function getMemValue() {
         $.ajax({

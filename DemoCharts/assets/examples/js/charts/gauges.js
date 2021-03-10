@@ -36,7 +36,7 @@
         options.strokeColor = Config.colors("green", 500);
       }
 
-      dynamicGauge.setOptions(options).set(random);
+      // dynamicGauge.setOptions(options).set(random);
     }, 1500);
   });
 
@@ -57,7 +57,7 @@
         options.strokeColor = Config.colors("green", 500);
       }
 
-      dynamicDonut.setOptions(options).set(random);
+      // dynamicDonut.setOptions(options).set(random);
     }, 1500);
   });
 });
