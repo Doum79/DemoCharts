@@ -13,16 +13,16 @@ namespace PerfDisplay.Controllers
 {
    
     [RoutePrefix("disk")]
-    [EnableCors("https://localhost:44345", "*", "*")]
+    [EnableCors("https://localhost:44345", "*", "get")]
     public class DiskController : ApiController
     {
-        [Route("{id}")]
+        [Route("{SpaceValue}")]
         [HttpGet]
         public JsonResult<string> Get()
         {
 
 
-            return Json($"Free space: {GetDiskValue()}");
+            return Json (GetDiskValue());
 
         }
 

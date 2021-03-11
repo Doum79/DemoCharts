@@ -21,9 +21,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="disk" data-plugin="gauge" data-value="" data-max-value="900">
+                                <div class="gauge" id="disk" data-plugin="gauge" data-value="result" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase"><strong><br />Disk Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase" value="result"><strong><br />Disk Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="" data-max-value="900">
+                                <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="result" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
                                     <p class="text-uppercase"><strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
@@ -50,9 +50,9 @@
                     <!-- Example Gauge Sizing -->
                     <div class="example-wrap">
                         <div class="example">
-                            <div class="gauge" id="memory" data-plugin="gauge" data-value="" data-max-value="900">
+                            <div class="gauge" id="memory" data-plugin="gauge" data-value="result" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase">(result)<strong><br />Memory Utilization (SNMP)</strong></p>
+                                <p class="text-uppercase"><strong><br />Memory Utilization (SNMP)</strong></p>
                             </div>
                         </div>
 
@@ -83,14 +83,15 @@
 
     let result = 0;
     function getCPUValue() {
+        
         $.ajax({
-            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8081/cpu/id' },
-            url: "http://localhost:8081/cpu/id",
+           
+            url: "http://localhost:8081/cpu/Cpuvalue",
             type: "GET",
             success: function (val) {
                 result = val.value;
-                console.log(result);
-               /* document.getElementById('getCPUValue').setAttribute('data-value', result);*/ // change la valeur de data-value automatiquement
+               /* console.log(result);*/
+                document.getElementById('CPUValue').setAttribute("data-value",result); // change la valeur de data-value automatiquement
             },
             error: function (err) {
                 console.log(err);
@@ -105,10 +106,13 @@
 
     function getMemValue() {
         $.ajax({
-            url: "http://localhost:8081/mem/id",
+            url: "http://localhost:8081/mem/Memvalue",
             type: "GET",
-            success: function (result) {
-                memResult = result.value;
+            success: function (val) {
+                /*memResult = result.value;*/
+                result = val.value;
+                /* console.log(result);*/
+                document.getElementById('memory').setAttribute("data-value",result); 
             },
             error: function (err) {
                 console.log(err);
@@ -122,10 +126,13 @@
 
     function getSpaceValue() {
         $.ajax({
-            url: "http://localhost:8081/disk/id",
+            url: "http://localhost:8081/disk/Spacevalue",
             type: "GET",
-            success: function (result) {
-                diskResult = result.value;
+            success: function (val) {
+                /*diskResult = result.value;*/
+                result = val.value;
+                /* console.log(result);*/
+                document.getElementById('disk').setAttribute("data-value",result); 
             },
             error: function (err) {
                 console.log(err);

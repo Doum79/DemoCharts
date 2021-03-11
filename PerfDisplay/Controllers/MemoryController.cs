@@ -13,16 +13,16 @@ namespace PerfDisplay.Controllers
 {
   
     [RoutePrefix("mem")]
-    [EnableCorsAttribute("https://localhost:44345", "*", "*")]
+    [EnableCors("https://localhost:44345", "*", "get,post")]
     public class MemoryController : ApiController
     {
-        [Route("{id}")]
+        [Route("{MemValue}")]
         [HttpGet]
         public JsonResult<string>  Get()
         {
 
 
-        return Json($" RAM: {GetMemory()}");
+        return Json(GetMemory());
 
         }
 
@@ -33,7 +33,7 @@ namespace PerfDisplay.Controllers
 
             float value = meCounter.NextValue();
             //Note: In most cases you need to call .NextValue() twice to be able to get the real value
-            var val = string.Format("{0:0}%", value);
+            var val = string.Format("{0:0}", value);
             Thread.Sleep(1000);
             return val;
         }

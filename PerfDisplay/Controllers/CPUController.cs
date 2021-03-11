@@ -14,16 +14,16 @@ namespace PerfDisplay.Controllers
 {
   
     [RoutePrefix("cpu")]
-    [EnableCorsAttribute("https://localhost:44345", "*", "*")]
+    [EnableCors("https://localhost:44345", "*", "get,post")]
     public class CPUController : ApiController
     {
-        [Route("{id}")]
+        [Route("{CpuValue}")]
         [HttpGet]
         public JsonResult<string> GetCpu()
         {
             
             
-            return Json($"CPU: {GetCPUusage()}"); 
+            return Json(GetCPUusage()); 
             
         }
 
