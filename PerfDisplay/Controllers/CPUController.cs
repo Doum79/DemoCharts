@@ -14,7 +14,7 @@ namespace PerfDisplay.Controllers
 {
   
     [RoutePrefix("cpu")]
-    [EnableCors("https://localhost:44345", "*", "get,post")]
+    [EnableCors("https://localhost:44345", "*", "get")]
     public class CPUController : ApiController
     {
         [Route("{CpuValue}")]
@@ -45,7 +45,7 @@ namespace PerfDisplay.Controllers
                 }
             }
             //return the status
-            return cpuClockSpeed + "%";
+            return cpuClockSpeed + "";
         }
        
     }

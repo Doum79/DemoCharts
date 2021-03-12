@@ -13,7 +13,7 @@ namespace PerfDisplay.Controllers
 {
   
     [RoutePrefix("mem")]
-    [EnableCors("https://localhost:44345", "*", "get,post")]
+    [EnableCors("https://localhost:44345", "*", "get")]
     public class MemoryController : ApiController
     {
         [Route("{MemValue}")]

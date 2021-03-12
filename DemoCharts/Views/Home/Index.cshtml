@@ -23,7 +23,7 @@
 
                                 <div class="gauge" id="disk" data-plugin="gauge" data-value="result" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase" value="result"><strong><br />Disk Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase" ><span id="resultValue2"></span><strong><br />Disk Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
 
                                 <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="result" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase"><strong><br />CPU Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase"><span id="resultValue"></span><span id="resultValue"></span><strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="example">
                             <div class="gauge" id="memory" data-plugin="gauge" data-value="result" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
-                                <p class="text-uppercase"><strong><br />Memory Utilization (SNMP)</strong></p>
+                                <p class="text-uppercase"><span id="resultValue1"></span>%<strong><br />Memory Utilization (SNMP)</strong></p>
                             </div>
                         </div>
 
@@ -89,9 +89,10 @@
             url: "http://localhost:8081/cpu/Cpuvalue",
             type: "GET",
             success: function (val) {
-                result = val.value;
-               /* console.log(result);*/
-                document.getElementById('CPUValue').setAttribute("data-value",result); // change la valeur de data-value automatiquement
+                result = val;
+                console.log(val);
+                document.getElementById('CPUValue').setAttribute("data-value", result); // change la valeur de data-value automatiquement
+                document.getElementById('resultValue').innerHTML = result; // change la valeur de data-value automatiquement
             },
             error: function (err) {
                 console.log(err);
@@ -109,10 +110,11 @@
             url: "http://localhost:8081/mem/Memvalue",
             type: "GET",
             success: function (val) {
-                /*memResult = result.value;*/
-                result = val.value;
-                /* console.log(result);*/
-                document.getElementById('memory').setAttribute("data-value",result); 
+              
+                result = val;
+                 console.log(result);
+                document.getElementById('memory').setAttribute("data-value", result); 
+                document.getElementById('resultValue1').innerHTML = result;
             },
             error: function (err) {
                 console.log(err);
@@ -129,13 +131,14 @@
             url: "http://localhost:8081/disk/Spacevalue",
             type: "GET",
             success: function (val) {
-                /*diskResult = result.value;*/
-                result = val.value;
-                /* console.log(result);*/
-                document.getElementById('disk').setAttribute("data-value",result); 
+               
+                result = val;
+                 console.log(result);
+                document.getElementById('disk').setAttribute("data-value", result);
+                document.getElementById('resultValue2').innerHTML = result;
             },
             error: function (err) {
-                console.log(err);
+                alert(err);
             }
         });
         setTimeout(getSpaceValue, 5000);
