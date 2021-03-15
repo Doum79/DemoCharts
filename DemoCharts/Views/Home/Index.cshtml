@@ -21,9 +21,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="disk" data-plugin="gauge" data-value="result" data-max-value="900">
+                                <div class="gauge" id="disk" data-plugin="gauge" data-value="resultValue2" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase" ><span id="resultValue2"></span><strong><br />Disk Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase" ><span id="resultValue2"></span>%<strong><br />Disk Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -35,9 +35,9 @@
                         <div class="example-wrap">
                             <div class="example">
 
-                                <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="result" data-max-value="900">
+                                <div class="gauge" id="CPUValue" data-plugin="gauge" data-value="resultValue" data-max-value="900">
                                     <canvas width="200" height="150"></canvas>
-                                    <p class="text-uppercase"><span id="resultValue"></span><span id="resultValue"></span><strong><br />CPU Utilization (SNMP)</strong></p>
+                                    <p class="text-uppercase"><span id="resultValue"></span>%<strong><br />CPU Utilization (SNMP)</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                     <!-- Example Gauge Sizing -->
                     <div class="example-wrap">
                         <div class="example">
-                            <div class="gauge" id="memory" data-plugin="gauge" data-value="result" data-max-value="900">
+                            <div class="gauge" id="memory" data-plugin="gauge" data-value="resultValue1" data-max-value="900">
                                 <canvas width="200" height="150"></canvas>
                                 <p class="text-uppercase"><span id="resultValue1"></span>%<strong><br />Memory Utilization (SNMP)</strong></p>
                             </div>
@@ -92,7 +92,7 @@
                 result = val;
                 console.log(val);
                 document.getElementById('CPUValue').setAttribute("data-value", result); // change la valeur de data-value automatiquement
-                document.getElementById('resultValue').innerHTML = result; // change la valeur de data-value automatiquement
+                document.getElementById('resultValue').innerHTML = result; // Afficher la valeur du cpu automatiquement
             },
             error: function (err) {
                 console.log(err);
